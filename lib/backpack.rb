@@ -4,3 +4,4 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 require 'framework/framework'
 require 'backpack/app'
 require 'backpack/data_store'
+require 'db/image'

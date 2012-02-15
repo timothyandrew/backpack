@@ -13,7 +13,7 @@ class Framework
       object = @routes[path].new env 
       object.get_response
     rescue NoMethodError
-      [404, { 'Content-Type' => 'text/html' }, 'Error in url!']
+      [404, { 'Content-Type' => 'text/html' }, ['Error in url!']]
     end
   end
 end
