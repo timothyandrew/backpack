@@ -7,9 +7,6 @@ class Framework
   def route(uri, &function)
     @routes[uri] = function
   end
-  def default_route(&function)
-    @default_route = function
-  end
   def call(env)
     path = env["PATH_INFO"]
     begin
