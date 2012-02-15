@@ -1,5 +1,6 @@
 source "http://rubygems.org/"
 gem "thin"
 gem "data_mapper"
-gem "shotgun"
 gem "dm-mysql-adapter"
+gem "shotgun"
+gem "dm-postgres-adapter"                                

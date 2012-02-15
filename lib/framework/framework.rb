@@ -14,7 +14,7 @@ class Framework
       object = @route_map[matching_route].new env 
       object.get_response
     else
-      [404, { 'Content-Type' => 'text/html' }, ['Error in url! 404']]
+      [404, { 'Content-Type' => 'text/html'}, ['Error in url! 404']]
     end
   end
 end
