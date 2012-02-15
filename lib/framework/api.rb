@@ -1,4 +1,4 @@
-class API 
+class Framework 
   attr_reader :routes
 
   def initialize

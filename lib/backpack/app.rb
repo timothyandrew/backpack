@@ -1,4 +1,4 @@
-class App < API
+class App < Framework
   def create_routes
     route '/imagea' do
       [200, {'Content-Type' => 'text/html'}, ["Hello Gajendra"]]
