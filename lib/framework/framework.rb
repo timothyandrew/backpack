@@ -4,19 +4,16 @@ class Framework
   def initialize
     @routes = {}
   end  
-  def route(uri, &function)
-    @routes[uri] = function
+  def route(uri, class_name)
+    @routes[uri] = class_name
   end
   def call(env)
     path = env["PATH_INFO"]
     begin
-      @routes[path].call env
+      object = @routes[path].new env 
+      object.get_response
     rescue NoMethodError
-      begin
-        @default_route.call env
-      rescue NoMethodError
-        [404, { 'Content-Type' => 'text/html' }, 'Error in url!']
-      end
+      [404, { 'Content-Type' => 'text/html' }, 'Error in url!']
     end
   end
 end
