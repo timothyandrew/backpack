@@ -10,12 +10,11 @@ class Framework
   def call(env)
     path = env["PATH_INFO"]                      
     #Find a matching URI
-    matching_route = @routes.find { |route| path.match(route) }
-    begin
+    if(matching_route = @routes.find { |route| path.match(route + '/') or path == route })
       object = @route_map[matching_route].new env 
       object.get_response
-    rescue NoMethodError
-      [404, { 'Content-Type' => 'text/html' }, ['Error in url!']]
+    else
+      [404, { 'Content-Type' => 'text/html' }, ['Error in url! 404']]
     end
   end
 end
