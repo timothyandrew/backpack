@@ -5,7 +5,10 @@ require 'base64'
 class DataStore
   def initialize(env)
      req  = Rack::Request.new(env)
-     puts req.params
+     if not req.post?
+       @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Invalid request!"]]       
+       return
+     end
      store(req.params['file'])
   end
   def store(file_attrs)     
@@ -19,6 +22,6 @@ class DataStore
     Digest::MD5.hexdigest(file) + (0...32).map{ ('a'..'z').to_a[rand(26)] }.join
   end
   def get_response
-    [200, {'Content-Type' => 'text/html'}, ["Success! Image hash is #{@hash}"]]
+    @error_resp || [200, {'Content-Type' => 'text/html'}, ["Success! Image hash is #{@hash}"]]
   end
 end

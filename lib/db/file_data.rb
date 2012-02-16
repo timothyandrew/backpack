@@ -7,4 +7,6 @@ class FileData
   property :md5sum, String, :length => 64, :key => true
   property :data,  Binary, :length => 999999999
   property :mime_type, String
-end
+  
+  belongs_to :user
+end                                 
