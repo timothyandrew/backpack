@@ -10,7 +10,6 @@ class ServeStatic
     rescue
       error_resp = [404, {'Content-Type' => 'text/html'}, ["Invalid URL. That file doesn't exist. Sorry!"]]
     end                           
-    puts MIME::Types.type_for(file.path).first.to_s
     error_resp || [200, { 'Content-Type' => MIME::Types.type_for(file.path).first.to_s }, [file.read]]
   end
 end
