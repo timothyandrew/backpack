@@ -9,5 +9,7 @@ require 'backpack/file_viewer'
 
 require 'db/dummy_data'
 require 'db/file_datum'
-require 'db/user'
+require 'db/user'             
+
+require 'backpack/pages/home_page'
 
