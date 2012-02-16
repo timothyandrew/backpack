@@ -15,7 +15,7 @@ class DataStore
     file      = file_attrs[:tempfile].read                  
     mime_type = file_attrs[:head].sub(/.*Type:\s/m, '').chomp
     @hash     = get_hash(file)                                                 
-    FileDatum.create(:md5sum => @hash, :data => Base64.encode64(file), :mime_type => mime_type)
+    Filedatum.create(:md5sum => @hash, :data => Base64.encode64(file), :mime_type => mime_type)
   end               
   #64 digit hash. MD5 of the file prefixed to a 32 character random string
   def get_hash(file)
