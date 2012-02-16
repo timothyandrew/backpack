@@ -4,5 +4,6 @@ class App < Framework
     route '/api/file/*', DataRetrieve
     route           '/', HomePage
     route     '/file/*', SingleFilePage
+    route   '/static/*', ServeStatic
   end
 end

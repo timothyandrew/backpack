@@ -5,6 +5,7 @@ require 'framework/framework'
 require 'backpack/app'
 require 'backpack/api/data_store'
 require 'backpack/api/data_retrieve'
+require 'backpack/api/serve_static'
 
 require 'db/dummy_data'
 require 'db/file_datum'
