@@ -1,0 +1,17 @@
+body {
+
+}
+
+.absolute-left (@left: 40%, @top: 50%) {
+	position: absolute;
+	left: @left;
+	top: @top;
+}
+
+#submit_button{
+	.absolute-left(42%, 49%)
+}  
+
+#file_select {
+	.absolute-left(40%, 42%)
+}
