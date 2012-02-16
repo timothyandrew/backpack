@@ -3,5 +3,6 @@ class App < Framework
     route '/api/upload', DataStore
     route '/api/file/*', DataRetrieve
     route           '/', HomePage
+    route     '/file/*', SingleFilePage
   end
 end
