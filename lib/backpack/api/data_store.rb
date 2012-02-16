@@ -22,6 +22,6 @@ class DataStore
     Digest::MD5.hexdigest(file) + (0...32).map{ ('a'..'z').to_a[rand(26)] }.join
   end
   def get_response
-    @error_resp || [200, {'Content-Type' => 'text/html'}, ["Success! Image hash is #{@hash}"]]
+    @error_resp || [303, {'Content-Type' => 'text/html', 'Location' => "/file/#{@hash}" }, ["Success! Image hash is #{@hash}"]]
   end
 end

@@ -1,7 +1,7 @@
 class App < Framework
   def create_routes
     route '/api/upload', DataStore
-    route     '/file/*', FileViewer
+    route '/api/file/*', DataRetrieve
     route           '/', HomePage
   end
 end
