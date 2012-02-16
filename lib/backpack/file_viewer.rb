@@ -1,7 +1,7 @@
 #Finds and serves the file with the supplied hash
 class FileViewer
   def initialize(env) 
-    hash = env['REQUEST_URI'].sub('/images/', '')
+    hash = env['REQUEST_URI'].sub('/file/', '')
     retrieve(hash)
   end           
   def retrieve(hash)
