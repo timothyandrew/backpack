@@ -8,5 +8,5 @@ class Filedatum
   property :data,  Binary, :length => 999999999
   property :mime_type, String
   
-  belongs_to :user
+  belongs_to :user, :required => false
 end                                 
