@@ -1,6 +1,6 @@
 require 'data_mapper'
 
-class FileData
+class Filedatum
   include DataMapper::Resource
   
   property :id,     Serial

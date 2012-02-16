@@ -5,7 +5,7 @@ class FileViewer
     retrieve(hash)
   end           
   def retrieve(hash)
-    file_data = FileData.first(:md5sum => hash)
+    file_data = FileDatum.first(:md5sum => hash)
     begin
       @file = Base64.decode64(file_data[:data])
       @mime_type = file_data[:mime_type]         
