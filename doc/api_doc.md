@@ -1,4 +1,4 @@
-POST /api/login
+*POST* /api/login
 ----------
 Given a user's username and password, an authentication token is returned if valid.
 This token is used along with any API call required *by that user*. 
@@ -12,19 +12,23 @@ This token is used along with any API call required *by that user*.
 
 * ***[String]*** - Authentication token for the user. Must be stored client-side.
 
-POST /api/upload
+*POST* /api/upload
 ----------
 Upload a file to the cloud. Returns a hash string to uniquely identify the file.
 
 **Parameters**
 
-* *file* - The file to be uploaded.  ***[Binary]***
+* *file* 	   - The file to be uploaded.  ***[Binary]***
+* *username*   - The username of the user this file belongs to. (optional)
+* *auth_token* - The authentication token for the above user (optional)
+
+(Username and auth_token *must* be used together, not separately)
 
 **Returned**
 
 * ***[String]*** - Unique hash representing the file or error string.
 
-GET /api/file/<hash>
+*GET* /api/file/<hash>
 ----------
 Retrieve the file identified by the given hash.
 
@@ -35,6 +39,8 @@ Retrieve the file identified by the given hash.
 **Returned**
 
 * ***[Binary]*** - The image identified by the hash.
+
 **OR**
+
 * ***[String]*** - Error message.
 

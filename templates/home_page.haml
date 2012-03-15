@@ -20,5 +20,9 @@
 		%div.container#main_action
 			%form{:action => @upload_link, :enctype => 'multipart/form-data', :method => 'post'}
 				%input#file_select{:type => 'file', :name => 'file'}
+				%label Username:
+				%input#username{:type => 'text', :name => 'username'}
+				%label Auth_Token:
+				%input#username{:type => 'text', :name => 'auth_token'}
 				%input.btn-primary.btn-large#submit_button{:type => 'submit', :value => 'Upload this file!'}
 					
