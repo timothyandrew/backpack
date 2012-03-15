@@ -10,5 +10,6 @@ namespace :db do
   task :empty do
     DataMapper::setup(:default, ENV['DATABASE_URL'] || "mysql://root:root@localhost/backpack")
     DataMapper.auto_migrate!    
+    puts "Database emptied"
   end
 end
