@@ -15,6 +15,7 @@ require 'db/user'
 
 require 'backpack/pages/home_page'
 require 'backpack/pages/single_file_page'
+require 'backpack/pages/user_file_list_page'
 
 require 'backpack/helpers/auth'
 

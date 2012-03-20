@@ -1,9 +1,6 @@
 class App < Framework
   def create_routes    
     #API Routes
-    route '/api/upload', DataStore
-    route '/api/file/*', DataRetrieve
-    route  '/api/login', UserLogin
     route  '/api/upload', DataStore
     route  '/api/file/*', DataRetrieve
     route   '/api/login', UserLogin
@@ -12,6 +9,7 @@ class App < Framework
     #Other Routes
     route           '/', HomePage
     route     '/file/*', SingleFilePage
+    route    '/files/*', UserFileListPage
     route   '/static/*', ServeStatic
   end
 end
