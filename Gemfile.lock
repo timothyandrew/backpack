@@ -84,6 +84,7 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-postgres-adapter
   haml
+  json
   mime-types
   rake
   shotgun

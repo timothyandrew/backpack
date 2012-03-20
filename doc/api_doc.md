@@ -44,3 +44,20 @@ Retrieve the file identified by the given hash.
 
 * ***[String]*** - Error message.
 
+*GET* /api/files/<user>
+----------
+
+Retrieve all the files belonging to the *user*.
+
+**Parameters**
+
+* *user* - The username of the user whose files are to be retrieved.  ***[String]***
+
+**Returned**
+
+* ***[JSON Array]*** - Array of image hashes, each corresponding to an image which belongs to the <user>.
+
+**OR**
+
+* ***[String]*** - Error message.
+

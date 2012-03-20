@@ -4,6 +4,10 @@ class App < Framework
     route '/api/upload', DataStore
     route '/api/file/*', DataRetrieve
     route  '/api/login', UserLogin
+    route  '/api/upload', DataStore
+    route  '/api/file/*', DataRetrieve
+    route   '/api/login', UserLogin
+    route '/api/files/*', UserDataListRetrieve
     
     #Other Routes
     route           '/', HomePage
