@@ -14,6 +14,10 @@ class UserLogin
       @error_resp = [404, { 'Content-Type' => 'text/html' }, ["User not found"]]
       return
     end
+    if not @user.password == req.params['password']
+      @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Wrong password!"]]       
+      return
+    end 
     if not user_already_logged_in?
       assign_auth_token
     end
