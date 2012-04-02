@@ -18,22 +18,21 @@ class DataStore
       @error_resp = [400, {'Content-Type' => 'text/html' }, ["No file sent"]]
       return
     end
-    file      = file_attrs[:tempfile].read                  
-    mime_type = file_attrs[:head].sub(/.*Type:\s/m, '').chomp
-    @hash     = get_hash(file)                                                 
-    Filedatum.create(:md5sum => @hash, :data => Base64.encode64(file), :mime_type => mime_type, :user => User.get(@req.params['username']))
     if not @req.params.include?('nobase64') 
       #Upload is through a form. Encode file to Base64
+      file = Base64.encode64(file_attrs[:tempfile].read)
       mime_type = file_attrs[:head].sub(/.*Type:\s/m, '').chomp                                               
+    else                                    
       #Upload is already in Base64. Simply strip out metadata at the beginning and store.
+      file = file_attrs
       mime_type = file.match(/data:(.*);base64\,/).to_a.last
       file.gsub!(/.*\,/, '')
     end                 
+    @hash     = get_hash(file)
     Filedatum.create(:md5sum => @hash, :data => file, :mime_type => mime_type, :user => User.get(@req.params['username']))
   end               
   #64 digit hash. MD5 of the file prefixed to a 32 character random string
   def get_hash(file)
-    Digest::MD5.hexdigest(file) + (0...32).map{ ('a'..'z').to_a[rand(26)] }.join
     (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
   end
   def get_response
