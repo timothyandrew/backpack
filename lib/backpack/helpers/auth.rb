@@ -1,6 +1,6 @@
 #Check if a request is authenticated
 def authenticated?(req)
-  if req.params['username'].empty?
+  if not req.params.include?('username')
     #File not linked to a user.
     return true
   else

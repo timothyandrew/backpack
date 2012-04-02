@@ -22,6 +22,14 @@ class DataStore
     mime_type = file_attrs[:head].sub(/.*Type:\s/m, '').chomp
     @hash     = get_hash(file)                                                 
     Filedatum.create(:md5sum => @hash, :data => Base64.encode64(file), :mime_type => mime_type, :user => User.get(@req.params['username']))
+    if not @req.params.include?('nobase64') 
+      #Upload is through a form. Encode file to Base64
+      mime_type = file_attrs[:head].sub(/.*Type:\s/m, '').chomp                                               
+      #Upload is already in Base64. Simply strip out metadata at the beginning and store.
+      mime_type = file.match(/data:(.*);base64\,/).to_a.last
+      file.gsub!(/.*\,/, '')
+    end                 
+    Filedatum.create(:md5sum => @hash, :data => file, :mime_type => mime_type, :user => User.get(@req.params['username']))
   end               
   #64 digit hash. MD5 of the file prefixed to a 32 character random string
   def get_hash(file)
