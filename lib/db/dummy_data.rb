@@ -6,7 +6,7 @@ class DummyData
                   :password => ["abcd123", "12345", "password", "guest"].sample)
     end
     50.times do
-      file = Filedatum.create(:md5sum => (0...64).map{ ('a'..'z').to_a[rand(26)] }.join,
+      file = Filedatum.create(:md5sum => (0...16).map{ ('a'..'z').to_a[rand(26)] }.join,
                       :data   => (0...128).map{ ('a'..'z').to_a[rand(26)] }.join,
                       :mime_type => "text/html",
                       :user => User.get((1..10).to_a.sample))      
