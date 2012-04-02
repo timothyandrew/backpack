@@ -31,7 +31,7 @@ class UserLogin
   def user_already_logged_in?
     #If a token exists and it expires in the future, the user is already logged-in
     if @user.auth_token and @user.token_expires > DateTime.now
-      @error_resp = [400, { 'Content-Type' => 'text/html' }, ["User already logged in."]]
+      @token = @user.auth_token
       return true
     end
     return false
