@@ -33,7 +33,7 @@ class DataStore
   end               
   #64 digit hash. MD5 of the file prefixed to a 32 character random string
   def get_hash(file)
-    (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
+    (0...5).map{ ('a'..'z').to_a[rand(26)] }.join
   end
   def get_response
     @error_resp || [200, {'Content-Type' => 'text/html' }, [@hash]]
