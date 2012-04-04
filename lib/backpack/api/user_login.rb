@@ -11,8 +11,7 @@ class UserLogin
     end    
     @user = User.get(req.params['username'])
     if not @user
-      @error_resp = [404, { 'Content-Type' => 'text/html' }, ["User not found"]]
-      return
+      @user = User.create(:username => req.params['username'], :password => req.params['password'])
     end
     if not @user.password == req.params['password']
       @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Wrong password!"]]       
