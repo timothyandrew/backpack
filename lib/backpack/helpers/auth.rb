@@ -12,6 +12,13 @@ def authenticated?(req)
       return false
     end
     if req.params['auth_token'] == user.auth_token
+      if user.token_expires < DateTime.now
+        @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Token expired! Re-login"]]
+        user.token_expires = nil
+        user.auth_token = nil
+        user.save
+        return false  
+      end
       #Valid auth token. Authenticated
       return true
     end
