@@ -11,6 +11,7 @@ class UserLogin
     end    
     @user = User.get(req.params['username'])
     if not @user
+      #Register new user in the same step if the username isn't found.
       @user = User.create(:username => req.params['username'], :password => req.params['password'])
     end
 
