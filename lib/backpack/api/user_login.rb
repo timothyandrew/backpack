@@ -13,6 +13,15 @@ class UserLogin
     if not @user
       @user = User.create(:username => req.params['username'], :password => req.params['password'])
     end
+
+    if user_already_logged_in? and req.params['logout']
+      @user.auth_token = nil
+      @user.token_expires = nil
+      @user.save
+      @error_resp = [200, { 'Content-Type' => 'text/html' }, ["Logged out!"]]       
+      return
+    end
+
     if not @user.password == req.params['password']
       @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Wrong password!"]]       
       return
