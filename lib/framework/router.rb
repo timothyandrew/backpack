@@ -14,6 +14,7 @@ class Framework
       object = @route_map[matching_route].new env 
       response = object.get_response
       response[1]['Access-Control-Allow-Origin'] = '*' #Add header to circumvent cross domain restrictions
+      puts response.inspect
       response
     else
       [404, { 'Content-Type' => 'text/html'}, ['Error in url! 404']]
