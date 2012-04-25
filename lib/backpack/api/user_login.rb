@@ -4,6 +4,7 @@ require 'date'
 #Authenticate a user and provide a session token
 class UserLogin
   def initialize(env)
+    @new_user = false
     req  = Rack::Request.new(env)
     if not req.post?
       @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Invalid request!"]]       
@@ -13,6 +14,7 @@ class UserLogin
     if not @user
       #Register new user in the same step if the username isn't found.
       @user = User.create(:username => req.params['username'], :password => req.params['password'])
+      @new_user = true
     end
 
     if user_already_logged_in? and req.params['logout']
@@ -46,6 +48,11 @@ class UserLogin
     return false
   end
   def get_response
-    @error_resp || [200, {'Content-Type' => 'text/html'}, [@token.chomp]]
+    unless @error_resp
+      data = { :token => @token.chomp, :expires => @user.token_expires, :new_user? => @new_user }
+      [200, {'Content-Type' => 'text/html'}, JSON.generate(data)]
+    else
+      @error_resp
+    end
   end
 end 
