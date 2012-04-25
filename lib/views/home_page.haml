@@ -1,35 +1,48 @@
 !!! 5
 %html  
-	%head
-		%link{:rel => 'stylesheet', :href => '/static/css/bootstrap.css'}
-		%link{:rel => 'stylesheet', :href => '/static/css/bootstrap.css'}
-		%link{:rel => 'stylesheet', :href => '/static/css/bootstrap-responsive.css'}
-		%link{:rel => 'stylesheet/less', :type => 'text/css', :href => '/static/css/home_page.less'}
-				
-		%script{:src => '/static/js/bootstrap.js', :type => 'text/javascript'}
-		%script{:src => '/static/js/jquery-1.7.1.min.js', :type => 'text/javascript'}
-		%script{:src => '/static/js/login.js', :type => 'text/javascript'}
-		%script{:src => '/static/js/less.js', :type => 'text/javascript'}		
-		%title Backpack
-	%body      
-		%div.navbar
-			%div.navbar-inner
-				%div.container
-					%a.brand Backpack
-					%ul.nav
-						%li
-							%a{:href => 'http://twitter.com/timothyandrew'}@timothyandrew
-		%div.container#upload
-			%form{:action => @upload_link, :enctype => 'multipart/form-data', :method => 'post'}			
-				%input#file_select{:type => 'file', :name => 'file'}
-				%input#upload_username{:type => 'text', :name => 'username', :placeholder => 'username (optional)'}
-				%input#upload_token{:type => 'text', :name => 'auth_token', :placeholder => "authentication token (optional)"}
-				%input.btn-primary.btn-large#submit_button{:type => 'submit', :value => 'Upload this file!'}
-		%div.container#login
-			%form{:method => 'post'}							
-				%label Username:
-				%input#username{:type => 'text', :name => 'username'}
-				%label Password:
-				%input#password{:type => 'text', :name => 'password'}			
-			%button.btn-warning.btn-medium#login_button{:onclick => 'javascript:login();'}Login
-					
+  %head
+    %link{:rel => 'stylesheet', :href => '/static/css/bootstrap.min.css'}
+    %link{:rel => 'stylesheet/less', :type => 'text/css', :href => '/static/css/home_page.less'}
+        
+    %script{:src => '/static/js/jquery-1.7.1.min.js', :type => 'text/javascript'}        
+    %script{:src => '/static/js/bootstrap.min.js', :type => 'text/javascript'}
+    %script{:src => '/static/js/bootstrap-modal.js', :type => 'text/javascript'}    
+    %script{:src => '/static/js/bootstrap-alert.js', :type => 'text/javascript'}    
+    %script{:src => '/static/js/spin.min.js', :type => 'text/javascript'}    
+    %script{:src => '/static/js/login.js', :type => 'text/javascript'}
+    %script{:src => '/static/js/less.js', :type => 'text/javascript'}   
+    %title Backpack
+  %body      
+    %div.navbar
+      %div.navbar-inner
+        %div.container
+          %a.brand Backpack
+          %ul.nav.pull-right
+            %li.dropdown
+              %a#pop(href='#myModal' onclick="javascript:$('#myModal').modal('show');")
+                Login/Register
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"} Hello
+    #notice
+    
+    %div.container#upload
+      %form{:action => @upload_link, :enctype => 'multipart/form-data', :method => 'post'}      
+        %input#file_select{:type => 'file', :name => 'file'}
+        %input#upload_username{:type => 'text', :name => 'username', :placeholder => 'username (optional)'}
+        %input#upload_token{:type => 'text', :name => 'auth_token', :placeholder => "authentication token (optional)"}
+        %input.btn-primary.btn-large#submit_button{:type => 'submit', :value => 'Upload this file!'}
+      
+    #myModal.modal.hide.fade
+      .modal-header
+        %a.close{"data-dismiss" => "modal"} ×
+        %h3 Login to Backpack or Create an Account
+      .modal-body
+        %form{:method => 'post'}              
+        %input#username{:textype => 'text', :name => 'username', :placeholder => "Enter your username"}
+        %input#password{:type => 'password', :name => 'password', :placeholder => "And password…"}
+
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+        %a.btn.btn-primary{:href => "javascript:loginBackpack();"} Login    
