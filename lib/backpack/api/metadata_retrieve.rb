@@ -8,8 +8,7 @@ class MetadataRetrieve
     begin
       username = file_data.user.username if file_data.user 
       @metadata = {
-        :title => nil,
-        :uploaded_at => nil,
+        :title => file_data.title || hash,
         :belongs_to => username
       }
     rescue => e
@@ -17,6 +16,6 @@ class MetadataRetrieve
     end
   end
   def get_response   
-    @error_resp || [200, { 'Content-Type' => 'application/json' }, [JSON.generate(@metadata)]]
+    @error_resp || [200, { 'Content-Type' => 'text/html' }, [JSON.generate(@metadata)]]
   end
 end
