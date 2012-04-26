@@ -6,3 +6,5 @@ logfile
 log/passenger.3000.log
 
 .DS_Store
+
+static/tmp/*
