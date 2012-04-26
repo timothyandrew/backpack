@@ -66,6 +66,7 @@ var updateInterfaceFromCookieState = function(){
   if(token){
     $('#pop').html("Logged in as " + username + "<b class='caret'></b>");
     $('#pop').attr('onclick', "javascript:$('#LogoutModal').modal('show');");
+    $("#all-files-button").attr('href', '/files/' + readCookie('username'));
     $('#upload_username').val(username);
     $('#upload_token').val(token);
   } else {
