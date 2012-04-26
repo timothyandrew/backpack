@@ -7,4 +7,7 @@ DataMapper.auto_upgrade!
 
 app = App.new
 app.create_routes
+
+use Rack::CommonLogger
+
 run app
