@@ -50,7 +50,7 @@ class UserLogin
   def get_response
     unless @error_resp
       data = { :token => @token.chomp, :expires => @user.token_expires, :new_user? => @new_user }
-      [200, {'Content-Type' => 'text/html'}, JSON.generate(data)]
+      [200, {'Content-Type' => 'text/html'}, [JSON.generate(data)]]
     else
       @error_resp
     end
