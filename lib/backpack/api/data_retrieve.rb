@@ -10,7 +10,7 @@ class DataRetrieve
       @file = Base64.decode64(file_data[:data])
       @mime_type = file_data[:mime_type]         
     rescue
-      @error_resp = [404, { 'Content-Type' => 'text/html' }, ["No image matching that hash. Sorry!"]]
+      @error_resp = [404, { 'Content-Type' => 'text/html' }, ["No image matching the hash #{hash} Sorry!"]]
     end
   end
   def get_response   

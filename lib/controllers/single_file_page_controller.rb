@@ -6,10 +6,10 @@ class SingleFilePageController
 
     if @mime_type.split('/').first == 'video' || @mime_type.split('/').first == 'audio'
       #Write video to file
-      file = DataRetrieve.new({ 'REQUEST_URI' => "/api/file/#{hash}" }).get_response.last
+      file_data = DataRetrieve.new({ 'REQUEST_URI' => "/api/file/#{hash}" }).get_response.last
       @file_path = File.join("static", "tmp", "#{hash}.#{@mime_type.split('/').last}")
       f = File.new(File.join(Dir.pwd, @file_path), 'w+')
-        f.write(file.first)
+        f.write(file_data.first)
       f.close
     end
   end

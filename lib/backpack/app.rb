@@ -4,6 +4,7 @@ class App < Framework
     route      '/api/upload', DataStore
     route      '/api/file/*', DataRetrieve
     route  '/api/metadata/*', MetadataRetrieve
+    route  '/api/storemd'  , MetadataStore
     route       '/api/login', UserLogin
     route     '/api/files/*', UserDataListRetrieve
 

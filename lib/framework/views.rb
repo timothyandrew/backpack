@@ -12,8 +12,6 @@ module Views
         rescue NameError
           controller = nil
         end
-        puts name + "Controller"
-        puts controller.inspect
         engine = Tilt.new(File.join(@views_path, "#{name.to_s.underscore}.haml"))
         return [200, { 'Content-Type' => 'text/html' }, [engine.render(controller.new(env))]] if controller
         return [200, { 'Content-Type' => 'text/html' }, [engine.render]]

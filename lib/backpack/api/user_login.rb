@@ -34,7 +34,7 @@ class UserLogin
     end
   end
   def assign_auth_token
-    @token = SecureRandom.uuid
+    @token = SecureRandom.uuid[0..15]
     @user.auth_token    = @token
     @user.token_expires = DateTime.now + 7
     @user.save

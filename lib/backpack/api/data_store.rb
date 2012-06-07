@@ -31,7 +31,7 @@ class DataStore
     @hash     = get_hash(file)
     Filedatum.create(:md5sum => @hash, :data => file, :mime_type => mime_type, :user => User.get(@req.params['username']))
   end               
-  #64 digit hash. MD5 of the file prefixed to a 32 character random string
+  #5 digit hash.
   def get_hash(file)
     (0...5).map{ ('a'..'z').to_a[rand(26)] }.join
   end

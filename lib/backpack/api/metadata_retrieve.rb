@@ -6,13 +6,16 @@ class MetadataRetrieve
   def retrieve_metadata(hash)
     file_data = Filedatum.first(:md5sum => hash)
     begin
-      username = file_data.user.username if file_data.user 
+      username = file_data.user.username if file_data.user
+      likes = file_data.likes
       @metadata = {
         :title => file_data.title || hash,
-        :belongs_to => username
+        :belongs_to => username,
+        :likes => likes,
+        :comments => file_data.comments
       }
     rescue => e
-      @error_resp = [404, { 'Content-Type' => 'text/html' }, ["No image matching that hash. Sorry!"]]
+      @error_resp = [404, { 'Content-Type' => 'text/html' }, ["No metadata matching the hash #{hash} Sorry!"]]
     end
   end
   def get_response   

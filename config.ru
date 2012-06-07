@@ -8,6 +8,10 @@ DataMapper.auto_upgrade!
 app = App.new
 app.create_routes
 
-use Rack::CommonLogger
+map "/static/" do
+  run Rack::Directory.new("./static/")
+end
+
+#use Rack::CommonLogger
 
 run app

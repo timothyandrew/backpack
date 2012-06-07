@@ -33,12 +33,12 @@
       
     #myModal.modal.hide.fade
       .modal-header
-        %a.close{"data-dismiss" => "modal"} ×
+        %a.close{"data-dismiss" => "modal"} x
         %h3 Login to Backpack or Create an Account
       .modal-body
         %form{:method => 'post'}              
         %input#username{:textype => 'text', :name => 'username', :placeholder => "Enter your username"}
-        %input#password{:type => 'password', :name => 'password', :placeholder => "And password…"}
+        %input#password{:type => 'password', :name => 'password', :placeholder => "And password..."}
       .modal-footer
         %a.btn{"data-dismiss" => "modal", :href => "#"} Close
         %a.btn.btn-primary{:href => "javascript:loginBackpack();"} Login

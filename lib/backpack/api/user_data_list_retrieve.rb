@@ -1,8 +1,8 @@
 require 'json'
 
 class UserDataListRetrieve
-	def initialize(env, username=nil)
-		username ||= env['REQUEST_URI'].sub('/api/files/', '')
+	def initialize(env)
+		username = env['REQUEST_URI'].sub('/api/files/', '')
 		user = User.get(username)	
 		if not user
 			@error_resp = [404, { 'Content-Type' => 'text/html' }, ["User does not exist"]]
