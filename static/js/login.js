@@ -2,7 +2,7 @@ var targetCont = null;
 
 $(document).ready(function(){
   updateInterfaceFromCookieState();
-  $('#upload_post_iframe').load(getFileHashFromIFrame);
+  $('#upload_post_iframe').ready(getFileHashFromIFrame);
 });
 
 var loginBackpack = function(){
