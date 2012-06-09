@@ -36,6 +36,6 @@ class DataStore
     (0...5).map{ ('a'..'z').to_a[rand(26)] }.join
   end
   def get_response
-    @error_resp || [200, {'Content-Type' => 'text/html' }, [@hash]]
+    @error_resp || [302, {'Location' => "/file/#{@hash}#new" }, []]
   end
 end

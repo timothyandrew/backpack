@@ -2,7 +2,6 @@ var targetCont = null;
 
 $(document).ready(function(){
   updateInterfaceFromCookieState();
-  $('#upload_post_iframe').ready(getFileHashFromIFrame);
 });
 
 var loginBackpack = function(){
@@ -100,11 +99,4 @@ function readCookie(name) {
 
 function eraseCookie(name) {
   createCookie(name,"",-1);
-}
-
-var getFileHashFromIFrame = function(){
-  var hash = $('#upload_post_iframe').contents().find("body").text();
-  if(hash){
-    window.location.replace("/file/" + hash + "#new");
-  }
 }

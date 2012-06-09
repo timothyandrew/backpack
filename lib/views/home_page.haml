@@ -25,7 +25,7 @@
 
 
     %div.container#upload
-      %form{:action => @upload_link, :enctype => 'multipart/form-data', :method => 'post', :target => 'upload_post_iframe'}      
+      %form{:action => @upload_link, :enctype => 'multipart/form-data', :method => 'post'}      
         %input#file_select{:type => 'file', :name => 'file'}
         %input#upload_username{:type => 'text', :name => 'username', :placeholder => 'username (optional)', :style => "display:none;"}
         %input#upload_token{:type => 'text', :name => 'auth_token', :placeholder => "authentication token (optional)", :style => "display:none;"}
@@ -54,6 +54,4 @@
         %a.btn.btn-large.btn-danger#logout-button{:onclick => "javascript:logout();" }
           %i.icon-off.icon-white
           Logout!
-
-    %iframe#upload_post_iframe{:style => "display:none;", :name => "upload_post_iframe", :src => "about:blank"}
         
