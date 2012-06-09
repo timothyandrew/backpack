@@ -104,5 +104,7 @@ function eraseCookie(name) {
 
 var getFileHashFromIFrame = function(){
   var hash = $('#upload_post_iframe').contents().find("body").text();
-  window.location.replace("/file/" + hash + "#new");
+  if(hash){
+    window.location.replace("/file/" + hash + "#new");
+  }
 }
