@@ -12,4 +12,9 @@ io.sockets.on('connection', function (socket) {
     console.log("NEW LIKE!!");
     io.sockets.emit('new_like');
   })
+
+  socket.on('edit_title', function(from) {
+    console.log("Title Edited.");
+    io.sockets.emit('edit_title');
+  })  
 });

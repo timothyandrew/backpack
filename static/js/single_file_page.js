@@ -17,6 +17,10 @@ $(document).ready(function(){
     window.location.reload();
   })
 
+  window.socket.on('edit_title', function(){
+    window.location.reload();
+  })
+
   window.socket.on('new_like', function(){
     var currentLikes = $('#like_count').text();
     $('#like_count').text(parseInt(currentLikes) + 1);
@@ -76,7 +80,8 @@ var saveTitle = function(){
   closeEditTitle();
   $("#title").text(newTitle);
   var hash = window.location.pathname.match(/\/\w+\/(\w+)/)[1]
-  $.post('/api/storemd', 'hash=' + hash + '&type=title&title=' + newTitle).success(function(data){ 
+  $.post('/api/storemd', 'hash=' + hash + '&type=title&title=' + newTitle).success(function(data){
+    window.socket.emit('edit_title');
     console.log(data);
   }).error(fail);
 }
