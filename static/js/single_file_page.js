@@ -32,7 +32,11 @@ var showMetadata = function(data) {
   var metadata = $.parseJSON(data);
   $("#title").text(metadata.title);
   $("#uploaded-by").text(metadata.belongs_to);
-  $("#uploaded-by").attr("href", "/files/" + metadata.belongs_to)
+
+  if(metadata.belongs_to){
+    $("#uploaded-by").attr("href", "/files/" + metadata.belongs_to)
+  }
+
   $("#like_count").text(metadata.likes);
 
   for(var i=0; i< metadata.comments.length; i++){
