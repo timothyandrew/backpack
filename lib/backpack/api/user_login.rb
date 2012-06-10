@@ -13,7 +13,7 @@ class UserLogin
     @user = User.get(req.params['username'])
     if not @user
       #Register new user in the same step if the username isn't found.
-      @user = User.create(:username => req.params['username'], :password => req.params['password'])
+      @user = User.create(:username => req.params['username'], :pass_hash => pass_hash(req.params['password']))
       @new_user = true
     end
 
@@ -25,7 +25,7 @@ class UserLogin
       return
     end
 
-    if not @user.password == req.params['password']
+    unless @user.pass_hash == pass_hash(req.params['password'])
       @error_resp = [400, { 'Content-Type' => 'text/html' }, ["Wrong password!"]]       
       return
     end 

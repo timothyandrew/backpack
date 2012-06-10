@@ -30,3 +30,4 @@ require 'controllers/user_file_list_page_controller'
 # Helpers
 require 'backpack/helpers/auth'
 require 'backpack/helpers/string_ext'
+require 'backpack/helpers/pass_hash'
