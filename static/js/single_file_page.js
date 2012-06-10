@@ -1,9 +1,7 @@
 $(document).ready(function(){
   $("#title_edit_close").hide();
   $("#title_edit_save").hide();
-  //Get metadata first
-  var hash = window.location.pathname.split('/')[2];
-  $.post('/api/metadata/' + hash, '').success(showMetadata).error(fail);
+  getMetadata();
 
   updateInterfaceFromCookieState();
   var loc = window.location;
@@ -14,11 +12,11 @@ $(document).ready(function(){
 
   window.socket = io.connect(window.location.protocol + "//" + window.location.hostname + ':3001/');
   window.socket.on('new_comment', function(){
-    window.location.reload();
+    getMetadata();
   })
 
   window.socket.on('edit_title', function(){
-    window.location.reload();
+    getMetadata();
   })
 
   window.socket.on('new_like', function(){
@@ -26,6 +24,12 @@ $(document).ready(function(){
     $('#like_count').text(parseInt(currentLikes) + 1);
   });
 });
+
+var getMetadata = function(){
+  //Get metadata first
+  var hash = window.location.pathname.split('/')[2];
+  $.post('/api/metadata/' + hash, '').success(showMetadata).error(fail);
+}
 
 var showMetadata = function(data) {
   console.log(data);
@@ -39,7 +43,8 @@ var showMetadata = function(data) {
 
   $("#like_count").text(metadata.likes);
 
-  for(var i=0; i< metadata.comments.length; i++){
+  $('.comment-box').remove();
+  for(var i = metadata.comments.length - 1; i >= 0; i--){
     $("#comments").append("<div class='comment-box'>" + metadata.comments[i].text + "</div>")
     console.log(metadata.comments[i]);
   }
@@ -51,13 +56,18 @@ var fail = function(opts){
 }
 
 var showCommentField = function(){
-  $("#banner").append("<input type='textarea' id='comment_text'></input><button class='btn btn-success' onclick='javascript:saveComment();'>Save</button>")
+  $("#banner").append("<input class='comment_field' type='textarea' id='comment_text'></input><button class='comment_field btn btn-success' onclick='javascript:saveComment();'>Save</button>")
+}
+
+var hideCommentField = function(){
+  $('.comment_field').remove();
 }
 
 var saveComment = function() {
   var hash = window.location.pathname.match(/\/\w+\/(\w+)/)[1]
   $.post('/api/storemd', 'hash=' + hash + '&type=' + 'comments&comment_text=' + $('#comment_text').val()).success(function(data){
     window.socket.emit('new_comment');
+    hideCommentField();
     console.log("Comment saved " + data);
   }).error(fail);
 }
